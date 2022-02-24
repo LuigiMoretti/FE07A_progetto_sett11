@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subscriber } from 'rxjs';
 @Component({
   template: `
-
+    <h1>Negozio</h1>
     <p *ngIf ='articoliNegozio.length==0' class="loading">loading...</p>
 
 
@@ -33,7 +33,7 @@ export class NegozioPage implements OnInit {
 
     setInterval(()=>{
       this.articoliNegozio=Servizi.articoli;
-    },20)
+    },2)
   }
 
 }

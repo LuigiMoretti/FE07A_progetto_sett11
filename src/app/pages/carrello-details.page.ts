@@ -6,6 +6,7 @@ import * as Servizi from '../store.service';
 
 @Component({
   template: `
+  <h1>Dettagli</h1>
 
   <button type="button" class="btn btn-close mb-2 btn-indietro" [routerLink]="['/']"></button>
     <div *ngIf="articolo" class="card-body">
@@ -16,15 +17,22 @@ import * as Servizi from '../store.service';
       </p>
       <button type="button" class="btn btn-primary" (click)="aggiungi()">
         Aggiungi al carrello
-      </button>
+      </button> <span *ngIf="conferma>0">Quantità: {{conferma}}</span>
     </div>
   `,
-  styles: [],
+  styles: [`
+  span{
+    color:lime;
+    margin-left:.3em;
+    font-size:1.3rem;
+    text-shadow: 0px 0px 2px black;
+  }
+  `],
 })
 export class CarrelloDetailsPage implements OnInit {
   articolo!: Articolo;
   sub!: Subscription;
-
+  conferma = 0;
   constructor(private router: ActivatedRoute) {}
 
 
@@ -39,5 +47,6 @@ export class CarrelloDetailsPage implements OnInit {
 
   aggiungi() {
     Servizi.aggiungiAlCarrello(this.articolo);
+    this.conferma += 1;
   }
 }

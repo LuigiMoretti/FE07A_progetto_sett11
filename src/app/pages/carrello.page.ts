@@ -3,12 +3,15 @@ import { Articolo } from '../models/articolo';
 import * as Servizi from '../store.service';
 import { ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+
+
 @Component({
   template: `
-  <!--{{articoliCarrello[0].id}}{{articoliCarrello[1].id}}-->
+<h1>Carrello</h1>
+
 <div class="container-fluid">
   <div class="row">
-      <div class="mb-4 col-sm-5" *ngFor="let articolo of articoliCarrello">
+      <div class="mb-4 col-sm-3" *ngFor="let articolo of articoliCarrello">
       <div class="card-body">
         <h5 class="card-title">{{articolo.name}}</h5>
         <p class="card-text">{{articolo.description}} <br> {{articolo.price | currency : 'EUR'}}</p>
@@ -18,7 +21,7 @@ import { NgForm } from '@angular/forms';
   </div>
 </div>
 
-    <div class="container">
+    <div class="container form">
       <h2>Completa l'ordine</h2>
       <form (ngSubmit)="submit()" #f="ngForm">
           <div ngModelGroup="userInfo">
@@ -36,13 +39,19 @@ import { NgForm } from '@angular/forms';
     </div>
   `,
   styles: [`
-     input.ng-invalid.ng-touched {
+    input.ng-invalid.ng-touched {
       border:1px solid red;
     }
-     .card-body{
-      width:100%!important;
-
-      }
+    .form {
+      background-color: rgb(219, 215, 215);
+      margin-bottom: 100px;
+      border-radius: 30px;
+      padding: 1em;
+      width: 60vw;
+    }
+    .card-body{
+      width:90%!important;
+    }
     `],
 })
 export class CarrelloPage implements OnInit {
@@ -67,7 +76,7 @@ export class CarrelloPage implements OnInit {
       }
     }
 
-    alert(
+  if(Servizi.carrello.length>0) { alert(
       "La tua ricevuta d'acquisto \n" +
         'Numero Ordine: ' +
         Math.floor(Math.random() * 10000000) +
@@ -80,6 +89,9 @@ export class CarrelloPage implements OnInit {
         '\n' +
         riepilogo
     );
+  }else{
+    alert("Dovresti aggiungere qualcosa al carrello prima!")
+  }
 
 
     Servizi.carrello.length=0;
