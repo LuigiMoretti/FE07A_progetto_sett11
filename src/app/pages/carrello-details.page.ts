@@ -17,7 +17,7 @@ import * as Servizi from '../store.service';
       </p>
       <button type="button" class="btn btn-primary" (click)="aggiungi()">
         Aggiungi al carrello
-      </button> <span *ngIf="conferma>0">Quantità: {{conferma}}</span>
+      </button> <span *ngIf="conferma>0">Aggiunti {{conferma}}</span>
     </div>
   `,
   styles: [`
