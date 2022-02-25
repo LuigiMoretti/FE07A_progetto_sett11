@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 @Component({
   template: `
 <h1>Carrello</h1>
+<h3 class="totale">Totale da pagare: {{totale}}€</h3>
 
 <div class="container-fluid">
   <div class="row">
@@ -28,10 +29,12 @@ import { NgForm } from '@angular/forms';
             <div class="form-group">
               <label for="name">Nome</label>
               <input class="form-control" ngModel name="nome" type="text" required #name="ngModel">
-              <p *ngIf="name.invalid">* Campo richiesto! *</p>
+              <p *ngIf="name.invalid" class="text-danger">* Campo richiesto! *</p>
+              <p *ngIf="!name.invalid" class="text-success">Ok</p>
               <label for="indirizzo">Indirizzo</label>
               <input class="form-control" ngModel name="indirizzo" type="text" required #indirizzo="ngModel">
-              <p *ngIf="indirizzo.invalid">* Campo richiesto! *</p>
+              <p *ngIf="indirizzo.invalid" class="text-danger">* Campo richiesto! *</p>
+              <p *ngIf="!indirizzo.invalid" class="text-success">Ok</p>
               <input type="submit" [disabled]="f.invalid" value="invia" class="btn btn-primary mt-2">
             </div>
           </div>
@@ -56,7 +59,7 @@ import { NgForm } from '@angular/forms';
 })
 export class CarrelloPage implements OnInit {
   articoliCarrello: Articolo[] = Servizi.carrello;
-
+  totale:number = 0
   @ViewChild("f", {static:true}) form!:NgForm;
 
   user:any = {};
@@ -105,6 +108,8 @@ export class CarrelloPage implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-
+  for(let i of this.articoliCarrello ){
+       this.totale+= Number(i.price);
+}
   }
 }
