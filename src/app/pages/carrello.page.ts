@@ -90,7 +90,9 @@ export class CarrelloPage implements OnInit {
         'Indirizzo: ' +
         this.user.indirizzo +
         '\n' +
-        riepilogo
+        riepilogo +
+        '\nTotale da pagare '+
+        this.totale + "€"
     );
   }else{
     alert("Dovresti aggiungere qualcosa al carrello prima!")
