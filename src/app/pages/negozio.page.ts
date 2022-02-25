@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import * as Servizi from '../store.service';
 import { Articolo } from '../models/articolo';
 import { HttpClient } from '@angular/common/http';
-import { Subscriber } from 'rxjs';
 @Component({
   template: `
     <h1>Negozio</h1>
