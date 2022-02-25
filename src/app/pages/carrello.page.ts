@@ -106,6 +106,7 @@ export class CarrelloPage implements OnInit {
   rimuovi(articolo:Articolo){
     Servizi.rimuoviDalCarrello(articolo);
     this.articoliCarrello=Servizi.carrello;
+    this.totale-=articolo.price;
   }
   constructor() {}
 
